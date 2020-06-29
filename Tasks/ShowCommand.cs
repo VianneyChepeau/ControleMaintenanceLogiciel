@@ -5,23 +5,25 @@ using System.Windows.Input;
 
 namespace Tasks
 {
-    public class ShowCommand : ICommand<IList<Task>>
+    public class ShowCommand : ICommand<IDictionary<string, IList<Task>>>
     {
+        private readonly IConsole console;
+
         public string GetName()
         {
             return "show";
         }
 
-        public void Execute(IList<Task> tasks)
+        public void Execute(IDictionary<string, IList<Task>> tasks)
         {
             foreach (var project in tasks)
             {
-                //Console.WriteLine(project.Key);
-                //foreach (var task in project.Value)
-                //{
-                //    console.WriteLine("    [{0}] {1}: {2}", (task.Done ? 'x' : ' '), task.Id, task.Description);
-                //}
-                //console.WriteLine();
+                console.WriteLine(project.Key);
+                foreach (var task in project.Value)
+                {
+                    console.WriteLine("    [{0}] {1}: {2}", (task.Done ? 'x' : ' '), task.Id, task.Description);
+                }
+                console.WriteLine();
             }
         }
 

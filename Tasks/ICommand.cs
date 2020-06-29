@@ -8,6 +8,6 @@ namespace Tasks
     {
         string GetName();
 
-        void Execute(T tasks);
+        void Execute(T tasks); 
     }
 }
