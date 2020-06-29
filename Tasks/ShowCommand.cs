@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Input;
 
 namespace Tasks
 {
-    public class ShowCommand : ICommand
+    public class ShowCommand : ICommand<IList<Task>>
     {
         public string GetName()
         {

@@ -4,10 +4,10 @@ using System.Text;
 
 namespace Tasks
 {
-    public interface ICommand
+    public interface ICommand <T>
     {
         string GetName();
 
-        void Execute(IList<Task> tasks);
+        void Execute(T tasks);
     }
 }
