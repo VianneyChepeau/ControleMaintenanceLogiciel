@@ -58,7 +58,7 @@ namespace Tasks
 				commandManager.help.Execute(null);
 				break;
 			default:
-				Error(command);
+				commandManager.error.Execute(command);
 				break;
 			}
 		}
@@ -137,10 +137,10 @@ namespace Tasks
 		//	console.WriteLine();
 		//}
 
-		private void Error(string command)
-		{
-			console.WriteLine("I don't know what the command \"{0}\" is.", command);
-		}
+		//private void Error(string command)
+		//{
+		//	console.WriteLine("I don't know what the command \"{0}\" is.", command);
+		//}
 
 		private long NextId()
 		{

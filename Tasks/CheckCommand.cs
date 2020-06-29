@@ -4,7 +4,16 @@ using System.Text;
 
 namespace Tasks
 {
-    class CheckCommand
+    public class CheckCommand : ICommand
     {
+        public string GetName()
+        {
+            return "check";
+        }
+
+        public void Execute()
+        {
+
+        }
     }
 }

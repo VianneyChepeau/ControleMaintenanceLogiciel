@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Tasks
 {
-    public class AddCommand : ICommand<string>
+    public class AddCommand : ICommand
     {
         private IDictionary<string, IList<Task>> tasks;
 

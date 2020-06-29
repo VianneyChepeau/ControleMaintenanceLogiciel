@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Tasks
 {
-    public interface ICommand <T>
+    public interface ICommand
     {
         string GetName();
 

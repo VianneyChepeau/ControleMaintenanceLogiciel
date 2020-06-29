@@ -5,7 +5,7 @@ using System.Windows.Input;
 
 namespace Tasks
 {
-    public class ShowCommand : ICommand<IDictionary<string, IList<Task>>>
+    public class ShowCommand : ICommand
     {
         private readonly IConsole console;
 
