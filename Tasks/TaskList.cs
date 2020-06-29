@@ -10,6 +10,7 @@ namespace Tasks
 
 		private readonly IDictionary<string, IList<Task>> tasks = new Dictionary<string, IList<Task>>();
 		private readonly IConsole console;
+		private CommandManager commandManager = new CommandManager();
 
 		private long lastId = 0;
 
@@ -41,7 +42,7 @@ namespace Tasks
 			var command = commandRest[0];
 			switch (command) {
 			case "show":
-				Show();
+				commandManager.show.Execute(tasks);
 				break;
 			case "add":
 				Add(commandRest[1]);
@@ -61,16 +62,16 @@ namespace Tasks
 			}
 		}
 
-		private void Show()
-		{
-			foreach (var project in tasks) {
-				console.WriteLine(project.Key);
-				foreach (var task in project.Value) {
-					console.WriteLine("    [{0}] {1}: {2}", (task.Done ? 'x' : ' '), task.Id, task.Description);
-				}
-				console.WriteLine();
-			}
-		}
+		//private void Show()
+		//{
+		//	foreach (var project in tasks) {
+		//		console.WriteLine(project.Key);
+		//		foreach (var task in project.Value) {
+		//			console.WriteLine("    [{0}] {1}: {2}", (task.Done ? 'x' : ' '), task.Id, task.Description);
+		//		}
+		//		console.WriteLine();
+		//	}
+		//}
 
 		private void Add(string commandLine)
 		{
