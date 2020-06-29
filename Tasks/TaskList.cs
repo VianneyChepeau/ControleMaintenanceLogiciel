@@ -8,7 +8,7 @@ namespace Tasks
 	{
 		private const string QUIT = "quit";
 
-		private readonly IDictionary<string, IList<Task>> tasks = new Dictionary<string, IList<Task>>();
+		private IDictionary<string, IList<Task>> tasks = new Dictionary<string, IList<Task>>();
 		private static IConsole console;
 		private CommandManager commandManager;
 
@@ -46,7 +46,7 @@ namespace Tasks
 				commandManager.show.Execute(tasks);
 				break;
 			case "add":
-				Add(commandRest[1]);
+				tasks = commandManager.add.Execute(tasks, commandRest[1]);
 				break;
 			case "check":
 				Check(commandRest[1]);
@@ -74,32 +74,32 @@ namespace Tasks
 		//	}
 		//}
 
-		private void Add(string commandLine)
-		{
-			var subcommandRest = commandLine.Split(" ".ToCharArray(), 2);
-			var subcommand = subcommandRest[0];
-			if (subcommand == "project") {
-				AddProject(subcommandRest[1]);
-			} else if (subcommand == "task") {
-				var projectTask = subcommandRest[1].Split(" ".ToCharArray(), 2);
-				AddTask(projectTask[0], projectTask[1]);
-			}
-		}
+		//private void Add(string commandLine)
+		//{
+		//	var subcommandRest = commandLine.Split(" ".ToCharArray(), 2);
+		//	var subcommand = subcommandRest[0];
+		//	if (subcommand == "project") {
+		//		AddProject(subcommandRest[1]);
+		//	} else if (subcommand == "task") {
+		//		var projectTask = subcommandRest[1].Split(" ".ToCharArray(), 2);
+		//		AddTask(projectTask[0], projectTask[1]);
+		//	}
+		//}
 
-		private void AddProject(string name)
-		{
-			tasks[name] = new List<Task>();
-		}
+		//private void AddProject(string name)
+		//{
+		//	tasks[name] = new List<Task>();
+		//}
 
-		private void AddTask(string project, string description)
-		{
-			if (!tasks.TryGetValue(project, out IList<Task> projectTasks))
-			{
-				Console.WriteLine("Could not find a project with the name \"{0}\".", project);
-				return;
-			}
-			projectTasks.Add(new Task { Id = NextId(), Description = description, Done = false });
-		}
+		//private void AddTask(string project, string description)
+		//{
+		//	if (!tasks.TryGetValue(project, out IList<Task> projectTasks))
+		//	{
+		//		Console.WriteLine("Could not find a project with the name \"{0}\".", project);
+		//		return;
+		//	}
+		//	projectTasks.Add(new Task { Id = NextId(), Description = description, Done = false });
+		//}
 
 		private void Check(string idString)
 		{
