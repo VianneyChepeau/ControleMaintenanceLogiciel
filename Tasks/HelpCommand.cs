@@ -2,7 +2,7 @@
 
 namespace Tasks
 {
-    public class HelpCommand : ICommand<string>
+    public class HelpCommand : ICommand
     {
         private readonly IConsole console;
 
@@ -16,7 +16,7 @@ namespace Tasks
             return "help";
         }
 
-        public void Execute(string param)
+        public void Execute()
         {
             console.WriteLine("Commands:");
             console.WriteLine("  show");

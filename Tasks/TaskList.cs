@@ -12,7 +12,7 @@ namespace Tasks
 		private static IConsole console;
 		private CommandManager commandManager;
 
-		private long lastId = 0;
+		//private long lastId = 0;
 
 		public static void Main(string[] args)
 		{
@@ -55,7 +55,7 @@ namespace Tasks
 				Uncheck(commandRest[1]);
 				break;
 			case "help":
-				commandManager.help.Execute(null);
+				commandManager.help.Execute();
 				break;
 			default:
 				commandManager.error.Execute(command);
@@ -142,9 +142,9 @@ namespace Tasks
 		//	console.WriteLine("I don't know what the command \"{0}\" is.", command);
 		//}
 
-		private long NextId()
-		{
-			return ++lastId;
-		}
+		//private long NextId()
+		//{
+		//	return ++lastId;
+		//}
 	}
 }
