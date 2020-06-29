@@ -1,12 +1,8 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using NUnit.Framework; 
 
 namespace Tasks.Tests
 {
-    [TestClass]
+    [TestFixture]
     public class CommandTest
     {
         //private TaskList _taskList;
@@ -17,12 +13,12 @@ namespace Tasks.Tests
             //_taskList = new TaskList(new RealConsole());
         }
 
-        [TestMethod]
+        [Test]
         public void GetNameCommandTest()
         {
             ShowCommand showCommand = new ShowCommand();
 
-            NUnit.Framework.Assert.AreEqual("show", showCommand.GetName());
+            Assert.AreEqual("show", showCommand.GetName());
         }
     }
 }
