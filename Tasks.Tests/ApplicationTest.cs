@@ -14,9 +14,8 @@ namespace Tasks
 		[SetUp]
 		public void StartTheApplication()
 		{
-			this.console = new FakeConsole();
-			var taskList = new TaskList(console);
-			this.applicationThread = new System.Threading.Thread(() => taskList.Run());
+			this.console = new FakeConsole(); 
+			this.applicationThread = new Thread(() => new TaskList(console).Run());
 			applicationThread.Start();
 		}
 
