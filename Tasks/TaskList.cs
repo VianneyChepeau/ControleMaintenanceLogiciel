@@ -9,8 +9,8 @@ namespace Tasks
 		private const string QUIT = "quit";
 
 		private readonly IDictionary<string, IList<Task>> tasks = new Dictionary<string, IList<Task>>();
-		private readonly IConsole console;
-		private CommandManager commandManager = new CommandManager();
+		private static IConsole console;
+		private CommandManager commandManager;
 
 		private long lastId = 0;
 
@@ -19,9 +19,10 @@ namespace Tasks
 			new TaskList(new RealConsole()).Run();
 		}
 
-		public TaskList(IConsole console)
+		public TaskList(IConsole myConsole)
 		{
-			this.console = console;
+            console = myConsole;
+			this.commandManager = new CommandManager(console);
 		}
 
 		public void Run()
