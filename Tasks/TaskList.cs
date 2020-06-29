@@ -49,10 +49,12 @@ namespace Tasks
 				tasks = commandManager.add.Execute(tasks, commandRest[1]);
 				break;
 			case "check":
-				Check(commandRest[1]);
+				commandManager.state = new StateTaskCommand(console, commandRest[1], true);
+				tasks = commandManager.state.Execute(tasks);
 				break;
 			case "uncheck":
-				Uncheck(commandRest[1]);
+				commandManager.state = new StateTaskCommand(console, commandRest[1], false);
+				tasks = commandManager.state.Execute(tasks);
 				break;
 			case "help":
 				commandManager.help.Execute();
@@ -101,30 +103,30 @@ namespace Tasks
 		//	projectTasks.Add(new Task { Id = NextId(), Description = description, Done = false });
 		//}
 
-		private void Check(string idString)
-		{
-			SetDone(idString, true);
-		}
+		//private void Check(string idString)
+		//{
+		//	SetDone(idString, true);
+		//}
 
-		private void Uncheck(string idString)
-		{
-			SetDone(idString, false);
-		}
+		//private void Uncheck(string idString)
+		//{
+		//	SetDone(idString, false);
+		//}
 
-		private void SetDone(string idString, bool done)
-		{
-			int id = int.Parse(idString);
-			var identifiedTask = tasks
-				.Select(project => project.Value.FirstOrDefault(task => task.Id == id))
-				.Where(task => task != null)
-				.FirstOrDefault();
-			if (identifiedTask == null) {
-				console.WriteLine("Could not find a task with an ID of {0}.", id);
-				return;
-			}
+		//private void SetDone(string idString, bool done)
+		//{
+		//	int id = int.Parse(idString);
+		//	var identifiedTask = tasks
+		//		.Select(project => project.Value.FirstOrDefault(task => task.Id == id))
+		//		.Where(task => task != null)
+		//		.FirstOrDefault();
+		//	if (identifiedTask == null) {
+		//		console.WriteLine("Could not find a task with an ID of {0}.", id);
+		//		return;
+		//	}
 
-			identifiedTask.Done = done;
-		}
+		//	identifiedTask.Done = done;
+		//}
 
 		//private void Help()
 		//{

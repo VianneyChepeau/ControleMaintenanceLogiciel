@@ -10,13 +10,14 @@ namespace Tasks
         public HelpCommand help { get; }
         public AddCommand add { get; }
         public ErrorCommand error { get; }
+        public StateTaskCommand state { get; set; }
         
         public CommandManager(IConsole console)
         {
             show = new ShowCommand(console);
             help = new HelpCommand(console);
             add = new AddCommand();
-            error = new ErrorCommand(console);
+            error = new ErrorCommand(console); 
         }
     }
 }

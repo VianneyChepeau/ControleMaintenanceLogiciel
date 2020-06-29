@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Tasks
@@ -22,9 +23,18 @@ namespace Tasks
             return done ? "check" : "uncheck";
         }
 
-        public void Execute()
+        public IDictionary<string, IList<Task>> Execute(IDictionary<string, IList<Task>> tasks)
         {
+            int id = int.Parse(idString);
+            var identifiedTask = tasks.Select(project => project.Value.FirstOrDefault(task => task.Id == id))
+                                      .Where(task => task != null)
+                                      .FirstOrDefault();
+            if (identifiedTask == null)
+                console.WriteLine("Could not find a task with an ID of {0}.", id);
+            else
+                identifiedTask.Done = done;
 
+            return tasks;
         }
     }
 }
