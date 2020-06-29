@@ -82,30 +82,15 @@ namespace Tasks
 			console.Execute("quit");
 		}
 
-		//private void Execute(string command)
-		//{
-		//	Read(PROMPT);
-		//	Write(command);
-		//}
-
-		//private void Read(string expectedOutput)
-		//{
-		//	var length = expectedOutput.Length;
-		//	var actualOutput = console.RetrieveOutput(expectedOutput.Length);
-		//	Assert.AreEqual(expectedOutput, actualOutput);
-		//}
-
-		//private void ReadLines(params string[] expectedOutput)
-		//{
-		//	foreach (var line in expectedOutput)
-		//	{
-		//		Read(line + Environment.NewLine);
-		//	}
-		//}
-
-		//private void Write(string input)
-		//{
-		//	console.SendInput(input + Environment.NewLine);
-		//}
+		[Test]
+		public void AddProjectTest()
+        {
+			console.Execute("add project secrets");
+			console.Execute("show");
+			console.ReadLines(
+				"secrets", 
+				""
+			);
+		}
 	}
 }

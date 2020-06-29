@@ -63,21 +63,25 @@ namespace Tasks
                 Console.WriteLine("Could not find a project with the name \"{0}\".", project);
                 return null;
             }
-            projectTasks.Add(new Task { Id = NextId(projectTasks), Description = description, Done = false });
+            projectTasks.Add(new Task { Id = NextId(), Description = description, Done = false });
 
             return tasks;
         }
 
-        private long NextId(IList<Task> projectTasks)
+        private long NextId()
         {
             long id = 0;
             List<long> idList = new List<long>();
-            foreach (var value in tasks.Values)
+            if(tasks.Count > 0)
             {
-                idList.Add(value.Max(x => x.Id));
+                foreach (var value in tasks.Values)
+                {
+                    idList.Add(value.Max(x => x.Id));
+                }
             }
 
-            id = idList.Max();
+            if(idList.Count > 0)
+                id = idList.Max();
 
             return id++;
         }
