@@ -7,10 +7,12 @@ namespace Tasks
     public class CommandManager
     {
         public ShowCommand show { get; }
+        public HelpCommand help { get; }
         
-        public CommandManager()
+        public CommandManager(IConsole console)
         {
-            show = new ShowCommand();
+            show = new ShowCommand(console);
+            help = new HelpCommand(console);
         }
     }
 }

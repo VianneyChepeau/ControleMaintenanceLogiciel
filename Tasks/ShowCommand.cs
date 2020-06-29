@@ -9,6 +9,11 @@ namespace Tasks
     {
         private readonly IConsole console;
 
+        public ShowCommand(IConsole console)
+        {
+            this.console = console;
+        }
+
         public string GetName()
         {
             return "show";
