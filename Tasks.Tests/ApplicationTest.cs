@@ -36,35 +36,35 @@ namespace Tasks
 		[Test, Timeout(1000)]
 		public void ItWorks()
 		{
-			Execute("show");
+			console.Execute("show");
 
-			Execute("add project secrets");
-			Execute("add task secrets Eat more donuts.");
-			Execute("add task secrets Destroy all humans.");
+			console.Execute("add project secrets");
+			console.Execute("add task secrets Eat more donuts.");
+			console.Execute("add task secrets Destroy all humans.");
 
-			Execute("show");
-			ReadLines(
+			console.Execute("show");
+			console.ReadLines(
 				"secrets",
 				"    [ ] 1: Eat more donuts.",
 				"    [ ] 2: Destroy all humans.",
 				""
 			);
 
-			Execute("add project training");
-			Execute("add task training Four Elements of Simple Design");
-			Execute("add task training SOLID");
-			Execute("add task training Coupling and Cohesion");
-			Execute("add task training Primitive Obsession");
-			Execute("add task training Outside-In TDD");
-			Execute("add task training Interaction-Driven Design");
+			console.Execute("add project training");
+			console.Execute("add task training Four Elements of Simple Design");
+			console.Execute("add task training SOLID");
+			console.Execute("add task training Coupling and Cohesion");
+			console.Execute("add task training Primitive Obsession");
+			console.Execute("add task training Outside-In TDD");
+			console.Execute("add task training Interaction-Driven Design");
 
-			Execute("check 1");
-			Execute("check 3");
-			Execute("check 5");
-			Execute("check 6");
+			console.Execute("check 1");
+			console.Execute("check 3");
+			console.Execute("check 5");
+			console.Execute("check 6");
 
-			Execute("show");
-			ReadLines(
+			console.Execute("show");
+			console.ReadLines(
 				"secrets",
 				"    [x] 1: Eat more donuts.",
 				"    [ ] 2: Destroy all humans.",
@@ -79,33 +79,33 @@ namespace Tasks
 				""
 			);
 
-			Execute("quit");
+			console.Execute("quit");
 		}
 
-		private void Execute(string command)
-		{
-			Read(PROMPT);
-			Write(command);
-		}
+		//private void Execute(string command)
+		//{
+		//	Read(PROMPT);
+		//	Write(command);
+		//}
 
-		private void Read(string expectedOutput)
-		{
-			var length = expectedOutput.Length;
-			var actualOutput = console.RetrieveOutput(expectedOutput.Length);
-			Assert.AreEqual(expectedOutput, actualOutput);
-		}
+		//private void Read(string expectedOutput)
+		//{
+		//	var length = expectedOutput.Length;
+		//	var actualOutput = console.RetrieveOutput(expectedOutput.Length);
+		//	Assert.AreEqual(expectedOutput, actualOutput);
+		//}
 
-		private void ReadLines(params string[] expectedOutput)
-		{
-			foreach (var line in expectedOutput)
-			{
-				Read(line + Environment.NewLine);
-			}
-		}
+		//private void ReadLines(params string[] expectedOutput)
+		//{
+		//	foreach (var line in expectedOutput)
+		//	{
+		//		Read(line + Environment.NewLine);
+		//	}
+		//}
 
-		private void Write(string input)
-		{
-			console.SendInput(input + Environment.NewLine);
-		}
+		//private void Write(string input)
+		//{
+		//	console.SendInput(input + Environment.NewLine);
+		//}
 	}
 }

@@ -1,8 +1,6 @@
 using NUnit.Framework;
 using System;
 using System.IO;
-using System.IO.Pipes;
-using System.Threading;
 
 namespace Tasks
 {
@@ -55,6 +53,31 @@ namespace Tasks
 			var buffer = new char[length];
 			outputReader.ReadBlock(buffer, 0, length);
 			return new string(buffer);
+		}
+
+		public void Execute(string command)
+		{
+			Read("> ");
+			Write(command);
+		}
+
+		private void Read(string expectedOutput)
+		{
+			var actualOutput = RetrieveOutput(expectedOutput.Length);
+			Assert.AreEqual(expectedOutput, actualOutput);
+		}
+
+		public void ReadLines(params string[] expectedOutput)
+		{
+			foreach (var line in expectedOutput)
+			{
+				Read(line + Environment.NewLine);
+			}
+		}
+
+		public void Write(string input)
+		{
+			SendInput(input + Environment.NewLine);
 		}
 	}
 }
