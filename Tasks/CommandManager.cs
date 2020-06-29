@@ -16,7 +16,7 @@ namespace Tasks
         {
             show = new ShowCommand(console);
             help = new HelpCommand(console);
-            add = new AddCommand();
+            add = new AddCommand(console);
             error = new ErrorCommand(console); 
         }
     }

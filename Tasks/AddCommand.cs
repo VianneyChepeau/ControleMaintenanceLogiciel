@@ -8,6 +8,12 @@ namespace Tasks
     public class AddCommand : ICommand
     {
         private IDictionary<string, IList<Task>> tasks;
+        private IConsole console;
+
+        public AddCommand(IConsole console)
+        {
+            this.console = console;
+        }
 
         public string GetName()
         {
@@ -21,9 +27,20 @@ namespace Tasks
             var subcommandRest = commandLine.Split(" ".ToCharArray(), 2);
             var subcommand = subcommandRest[0];
             if (subcommand == "project")
+            {
+                if (subcommandRest.Length < 2)
+                {
+                    console.WriteLine("Veuillez indiquer le nom du projet");
+                    return tasks;
+                }
                 return AddProject(subcommandRest[1]);
+            }
             else if (subcommand == "task")
             {
+                if (subcommandRest.Length < 2)
+                {
+                    console.WriteLine("Veuillez indiquer le nom du projet et la description de la tâche");
+                }
                 var projectTask = subcommandRest[1].Split(" ".ToCharArray(), 2);
                 return AddTask(projectTask[0], projectTask[1]);
             }
