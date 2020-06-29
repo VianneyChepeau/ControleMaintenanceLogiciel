@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Tasks
@@ -45,6 +46,14 @@ namespace Tasks
                 return null;
             }
             projectTasks.Add(new Task { Id = NextId(), Description = description, Done = false });
+
+            return tasks;
+        }
+
+        private long NextId(IList<Task> projectTasks)
+        {
+            var lastId = projectTasks.Max(x => x.Id);
+            return ++lastId; 
         }
     }
 }
