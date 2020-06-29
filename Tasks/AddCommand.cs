@@ -40,6 +40,7 @@ namespace Tasks
                 if (subcommandRest.Length < 2)
                 {
                     console.WriteLine("Veuillez indiquer le nom du projet et la description de la tâche");
+                    return tasks;
                 }
                 var projectTask = subcommandRest[1].Split(" ".ToCharArray(), 2);
                 return AddTask(projectTask[0], projectTask[1]);
