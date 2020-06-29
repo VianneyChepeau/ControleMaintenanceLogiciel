@@ -1,16 +1,15 @@
 using System;
 using System.IO;
+using System.Threading;
 using NUnit.Framework;
 
 namespace Tasks
 {
 	[TestFixture]
 	public sealed class ApplicationTest
-	{
-		public const string PROMPT = "> ";
-
+	{  
 		private FakeConsole console;
-		private System.Threading.Thread applicationThread;
+		private Thread applicationThread;
 
 		[SetUp]
 		public void StartTheApplication()
@@ -83,14 +82,22 @@ namespace Tasks
 		}
 
 		[Test]
-		public void AddProjectTest()
+		public void AddProject()
         {
+			console.Execute("show");
+
 			console.Execute("add project secrets");
+			console.Execute("add task secrets Eat more donuts.");
+			console.Execute("add task secrets Destroy all humans.");
+
 			console.Execute("show");
 			console.ReadLines(
-				"secrets", 
+				"secrets",
+				"    [ ] 1: Eat more donuts.",
+				"    [ ] 2: Destroy all humans.",
 				""
 			);
+			console.Execute("quit");
 		}
 	}
 }
