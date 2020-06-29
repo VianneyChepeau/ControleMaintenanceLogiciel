@@ -8,6 +8,6 @@ namespace Tasks
     {
         string GetName();
 
-        void Execute();
+        void Execute(IList<Task> tasks);
     }
 }
