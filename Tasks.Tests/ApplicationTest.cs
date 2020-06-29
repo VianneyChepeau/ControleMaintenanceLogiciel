@@ -23,9 +23,7 @@ namespace Tasks
 		public void KillTheApplication()
 		{
 			if (applicationThread == null || !applicationThread.IsAlive)
-			{
 				return;
-			}
 
 			applicationThread.Abort();
 			throw new Exception("The application is still running.");
@@ -82,19 +80,49 @@ namespace Tasks
 
 		[Test]
 		public void AddProject()
-        {
+        { 
+			console.Execute("add project secrets"); 
 			console.Execute("show");
+			console.ReadLines(
+				"secrets", 
+				""
+			);
+			console.Execute("quit");
+		}
+		
+		[Test]
+		public void AddProjectWithNameEmpty()
+        { 
+			console.Execute("add project");  
+			console.ReadLines(
+				"Veuillez indiquer le nom du projet"
+			);
+			console.Execute("quit");
+		}
 
+		[Test]
+		public void AddProjectTask()
+		{
 			console.Execute("add project secrets");
-			console.Execute("add task secrets Eat more donuts.");
-			console.Execute("add task secrets Destroy all humans.");
+			console.Execute("add task secrets Eat more donuts."); 
 
 			console.Execute("show");
 			console.ReadLines(
 				"secrets",
-				"    [ ] 1: Eat more donuts.",
-				"    [ ] 2: Destroy all humans.",
+				"    [ ] 1: Eat more donuts.", 
 				""
+			);
+			console.Execute("quit");
+		}
+		
+		[Test]
+		public void AddProjectTaskWithTaskNameEmpty()
+		{
+			console.Execute("add project secrets");
+			console.Execute("add task");
+
+			console.ReadLines(
+				"Veuillez indiquer le nom du projet et la description de la tâche"
 			);
 			console.Execute("quit");
 		}
