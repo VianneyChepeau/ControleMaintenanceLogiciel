@@ -6,13 +6,17 @@ namespace Tasks
 {
     public class AddCommand : ICommand<string>
     {
+        private IDictionary<string, IList<Task>> tasks;
+
         public string GetName()
         {
             return "add";
         }
 
-        public void Execute(string commandLine)
+        public IDictionary<string, IList<Task>> Execute(IDictionary<string, IList<Task>> tasks, string commandLine)
         {
+            this.tasks = tasks;
+
             var subcommandRest = commandLine.Split(" ".ToCharArray(), 2);
             var subcommand = subcommandRest[0];
             if (subcommand == "project")
@@ -27,10 +31,20 @@ namespace Tasks
         }
 
 
-        private void AddProject(string name)
+        private IDictionary<string, IList<Task>> AddProject(string name)
         {
             tasks[name] = new List<Task>();
+            return tasks;
         }
 
+        private IDictionary<string, IList<Task>> AddTask(string project, string description)
+        {
+            if (!tasks.TryGetValue(project, out IList<Task> projectTasks))
+            {
+                Console.WriteLine("Could not find a project with the name \"{0}\".", project);
+                return null;
+            }
+            projectTasks.Add(new Task { Id = NextId(), Description = description, Done = false });
+        }
     }
 }

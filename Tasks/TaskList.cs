@@ -55,7 +55,7 @@ namespace Tasks
 				Uncheck(commandRest[1]);
 				break;
 			case "help":
-					commandManager.help.Execute(null);
+				commandManager.help.Execute(null);
 				break;
 			default:
 				Error(command);
@@ -126,16 +126,16 @@ namespace Tasks
 			identifiedTask.Done = done;
 		}
 
-		private void Help()
-		{
-			console.WriteLine("Commands:");
-			console.WriteLine("  show");
-			console.WriteLine("  add project <project name>");
-			console.WriteLine("  add task <project name> <task description>");
-			console.WriteLine("  check <task ID>");
-			console.WriteLine("  uncheck <task ID>");
-			console.WriteLine();
-		}
+		//private void Help()
+		//{
+		//	console.WriteLine("Commands:");
+		//	console.WriteLine("  show");
+		//	console.WriteLine("  add project <project name>");
+		//	console.WriteLine("  add task <project name> <task description>");
+		//	console.WriteLine("  check <task ID>");
+		//	console.WriteLine("  uncheck <task ID>");
+		//	console.WriteLine();
+		//}
 
 		private void Error(string command)
 		{

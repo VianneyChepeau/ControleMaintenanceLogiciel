@@ -4,10 +4,7 @@ using System.Text;
 
 namespace Tasks
 {
-    public interface ICommand <T>
+    class CheckCommand
     {
-        string GetName();
-
-        //void Execute(T param); 
     }
 }
