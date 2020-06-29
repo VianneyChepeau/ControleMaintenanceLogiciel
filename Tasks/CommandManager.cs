@@ -8,11 +8,13 @@ namespace Tasks
     {
         public ShowCommand show { get; }
         public HelpCommand help { get; }
+        public AddCommand add { get; }
         
         public CommandManager(IConsole console)
         {
             show = new ShowCommand(console);
             help = new HelpCommand(console);
+            add = new AddCommand();
         }
     }
 }

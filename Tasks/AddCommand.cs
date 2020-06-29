@@ -21,14 +21,14 @@ namespace Tasks
             var subcommandRest = commandLine.Split(" ".ToCharArray(), 2);
             var subcommand = subcommandRest[0];
             if (subcommand == "project")
-            {
-                AddProject(subcommandRest[1]);
-            }
+                return AddProject(subcommandRest[1]);
             else if (subcommand == "task")
             {
                 var projectTask = subcommandRest[1].Split(" ".ToCharArray(), 2);
-                AddTask(projectTask[0], projectTask[1]);
+                return AddTask(projectTask[0], projectTask[1]);
             }
+            else
+                return null;
         }
 
 
@@ -45,15 +45,23 @@ namespace Tasks
                 Console.WriteLine("Could not find a project with the name \"{0}\".", project);
                 return null;
             }
-            projectTasks.Add(new Task { Id = NextId(), Description = description, Done = false });
+            projectTasks.Add(new Task { Id = NextId(projectTasks), Description = description, Done = false });
 
             return tasks;
         }
 
         private long NextId(IList<Task> projectTasks)
         {
-            var lastId = projectTasks.Max(x => x.Id);
-            return ++lastId; 
+            long id = 0;
+            List<long> idList = new List<long>();
+            foreach (var value in tasks.Values)
+            {
+                idList.Add(value.Max(x => x.Id));
+            }
+
+            id = idList.Max();
+
+            return id++;
         }
     }
 }
