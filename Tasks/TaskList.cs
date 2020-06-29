@@ -55,7 +55,7 @@ namespace Tasks
 				Uncheck(commandRest[1]);
 				break;
 			case "help":
-				Help();
+					commandManager.help.Execute(null);
 				break;
 			default:
 				Error(command);
